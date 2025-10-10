@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Danh sách sản phẩm</title>
+    <style>
+        table { width: 80%; border-collapse: collapse; margin: 20px auto; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        h1 { text-align: center; margin-top: 30px; }
+        .add-button { display: block; width: 150px; margin: 20px auto; padding: 10px; text-align: center; background-color: #4CAF50; color: white; text-decoration: none; border-radius: 5px; }
+    </style>
+</head>
+<body>
+
+<h1>Danh sách Sản phẩm</h1>
+
+<a th:href="@{/products/new}" class="add-button">Thêm Sản phẩm Mới</a>
+
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Tên sách</th>
+        <th>Tác giả</th>
+        <th>Loại sách</th>
+        <th>Giá</th>
+        <td>Action</td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="product : ${products}">
+        <td th:text="${product.id}"></td>
+        <td><a th:href="@{/products/detail/{id}(id=${product.id})}" th:text="${product.name}"></a></td>
+        <td th:text="${product.brand}"></td>
+        <td th:text="${product.madein}"></td>
+        <td th:text="${#numbers.formatCurrency(product.price)}"></td>
+        <td>
+            <a th:href="@{/products/edit/{id}(id=${product.id})}">Edit</a>
+            &nbsp;&nbsp;
+            <a th:href="@{/products/delete/{id}(id=${product.id})}" onclick="return confirm('Are you sure you want to delete?');">Delete</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>

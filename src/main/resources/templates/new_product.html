@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:text="${product.id != null} ? 'Edit Product' : 'Add New Product'"></title>
+    <style>
+        .form-container { width: 50%; margin: 50px auto; padding: 30px; border: 1px solid #ccc; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        h1 { text-align: center; margin-bottom: 30px; }
+        label { display: block; margin-bottom: 10px; font-weight: bold; }
+        input[type="text"], input[type="number"] { width: calc(100% - 20px); padding: 10px; margin-bottom: 20px; border: 1px solid #ccc; border-radius: 4px; }
+        button { width: 100%; padding: 12px; background-color: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer; font-size: 16px; }
+        button:hover { background-color: #0056b3; }
+        .back-link { display: block; text-align: center; margin-top: 20px; text-decoration: none; color: #6c757d; }
+    </style>
+</head>
+<body>
+
+<div class="form-container">
+    <h1 th:text="${product.id != null} ? 'Edit Product' : 'Add New Product'"></h1>
+
+    <form action="#" th:action="@{/products/save}" th:object="${product}" method="post">
+        <input type="hidden" th:field="*{id}" />
+
+        <div>
+            <label for="name">Tên sản phẩm:</label>
+            <input type="text" id="name" th:field="*{name}" required>
+        </div>
+        <div>
+            <label for="brand">Tác giả:</label>
+            <input type="text" id="brand" th:field="*{brand}" required>
+        </div>
+        <div>
+            <label for="madein">Loại sách:</label>
+            <input type="text" id="madein" th:field="*{madein}" required>
+        </div>
+        <div>
+            <label for="price">Giá:</label>
+            <input type="number" step="0.01" id="price" th:field="*{price}" required>
+        </div>
+        <div>
+            <button type="submit">Lưu Sản phẩm</button>
+        </div>
+    </form>
+
+    <a href="/products/list" class="back-link">Quay lại danh sách</a>
+</div>
+
+</body>
+</html>

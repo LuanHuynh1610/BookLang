@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:text="${product.name}"></title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 40px; }
+        .product-details { max-width: 600px; margin: auto; padding: 20px; border: 1px solid #ddd; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        h1 { text-align: center; color: #333; }
+        p { margin: 10px 0; font-size: 1.1em; }
+        .back-link { display: block; text-align: center; margin-top: 20px; }
+        .label { font-weight: bold; color: #555; }
+    </style>
+</head>
+<body>
+
+<div class="product-details">
+    <h1 th:text="${product.name}">Product Name</h1>
+
+    <p><span class="label">ID:</span> <span th:text="${product.id}"></span></p>
+    <p><span class="label">Tên sách:</span> <span th:text="${product.name}"></span></p>
+    <p><span class="label">Tác giả:</span> <span th:text="${product.brand}"></span></p>
+    <p><span class="label">Loại sách:</span> <span th:text="${product.madein}"></span></p>
+    <p><span class="label">Giá:</span> <span style="color:red" th:text="${product.price}"></span></p>
+</div>
+
+<a th:href="@{/products/list}" class="back-link">[Quay lại danh sách]</a>
+
+</body>
+</html>
+
