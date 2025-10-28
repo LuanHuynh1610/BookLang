@@ -10,5 +10,8 @@ COPY . .
 # Build app bằng Maven wrapper
 RUN ./mvnw clean package -DskipTests
 
-# Chạy file jar
-CMD ["java", "-jar", "target/crudmysql-0.0.1-SNAPSHOT.jar"]
+# Cho phép Render chỉ định cổng
+ENV PORT=8080
+EXPOSE 8080
+
+CMD ["sh", "-c", "java -jar target/crudmysql-0.0.1-SNAPSHOT.jar --server.port=${PORT}"]
