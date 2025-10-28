@@ -11,4 +11,4 @@ COPY . .
 RUN ./mvnw clean package -DskipTests
 
 # Chạy file jar
-CMD ["java", "-jar", "target/*.jar"]
+CMD ["java", "-jar", "target/crudmysql-0.0.1-SNAsPSHOT.jar"]
