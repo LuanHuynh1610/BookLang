@@ -4,16 +4,107 @@
     <meta charset="UTF-8">
     <title>Danh sách Sản phẩm</title>
     <style>
-        body { font-family: Arial, sans-serif; margin: 20px; }
-        table { width: 100%; border-collapse: collapse; }
-        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
-        th { background-color: #f2f2f2; }
-        .success-message { color: green; font-weight: bold; margin-bottom: 15px; }
-        .error-message { color: red; font-weight: bold; margin-bottom: 15px; }
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .success-message {
+            color: green;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+        .error-message {
+            color: red;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+        .slide-show {
+            width: 85vmin;
+            transform: translate(-50%,-50%);
+            top: 50%;
+            left: 50%;
+            overflow: hidden;
+            border: 20px solid #ffffff;
+            border-radius: 8px;
+            box-shadow: 10px 25px 30px
+
+            rgba(30,30,200,0.3);
+        }
+
+        .list-images {
+            width: 100%;
+            display: flex;
+            animation: slide 16s infinite;
+        }
+
+
     </style>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+
+    <header class="header">
+        <div class="container">
+            <!-- Logo -->
+            <div class="logo">
+                <a href="/">
+                    <img src="https://imgs.search.brave.com/xypO8GT7959BED6C86po2H2aZc3L2f-TVhZzFVwbDlU/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly91cy1z/dG9yZS5kZXV0c2No/ZWdyYW1tb3Bob24u/Y29tL2Nkbi9zaG9w/L3Byb2R1Y3RzL2xh/bmdsYW5nQ0QucG5n/P3Y9MTYyMzMwMjk0/MiZ3aWR0aD0xMDAw" alt="Book Store">
+                </a>
+            </div>
+
+            <!-- Navigation -->
+            <nav class="nav">
+                <ul class="menu">
+                    <li><a href="/">Trang chủ</a></li>
+                    <li><a href="/gioi-thieu">Về BookLang</a></li>
+                    <li class="dropdown">
+                        <a href="#">Tủ sách ▾</a>
+                        <ul class="submenu">
+                            <li><a href="#">Kỹ năng</a></li>
+                            <li><a href="#">Kinh doanh</a></li>
+                            <li><a href="#">Marketing</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#">Tin tức - Sự kiện ▾</a>
+                        <ul class="submenu">
+                            <li><a href="#">Kỹ năng</a></li>
+                            <li><a href="#">Kinh doanh</a></li>
+                            <li><a href="#">Marketing</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="/lien-he">Liên hệ</a></li>
+
+
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <div class="slide-show">
+        <div class="list-images">
+            <img src="https://bizweb.dktcdn.net/100/197/269/themes/890698/assets/slider_2.jpg?1759394851006" alt="Slide 1">
+            <img src="https://bizweb.dktcdn.net/100/197/269/themes/890698/assets/slider_3.jpg?1759394851006" alt="Slide 2">
+            <img src="https://bizweb.dktcdn.net/100/197/269/themes/890698/assets/slider_4.jpg?1759394851006" alt="Slide 3">
+            <img src="https://bizweb.dktcdn.net/100/197/269/themes/890698/assets/slider_5.jpg?1759394851006" alt="Slide 4">
+        </div>
+    </div>
+
+
 <h1>Danh sách Sản phẩm</h1>
+
+
 
 <p><a href="/cart">Xem Giỏ hàng</a></p>
 

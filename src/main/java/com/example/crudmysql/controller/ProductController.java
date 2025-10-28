@@ -8,7 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
-
+import java.util.List;
 @Controller
 @RequestMapping("/products")
 public class ProductController {
@@ -16,10 +16,22 @@ public class ProductController {
     @Autowired
     private ProductService productService;
 
-    // Hiển thị danh sách sản phẩm
-    @GetMapping("/list")
-    public String listProducts(Model model) {
-        model.addAttribute("products", productService.getAllProducts());
+    // Hiển thị danh sách sản phẩm với chức năng tìm kiếm
+    @GetMapping
+    public String listProducts(@RequestParam(value = "keyword", required = false) String keyword,
+                               Model model) {
+        List<Product> products;
+
+        if (keyword != null && !keyword.trim().isEmpty()) {
+            // Tìm kiếm sản phẩm theo từ khóa
+            products = productService.searchProducts(keyword.trim());
+            model.addAttribute("keyword", keyword.trim());
+        } else {
+            // Hiển thị tất cả sản phẩm
+            products = productService.getAllProducts();
+        }
+
+        model.addAttribute("products", products);
         return "product_list";
     }
 
@@ -33,20 +45,19 @@ public class ProductController {
     @PostMapping("/save")
     public String saveProduct(@ModelAttribute("product") Product product) {
         productService.saveProduct(product);
-        return "redirect:/products/list";
+        return "redirect:/products";
     }
 
     // Hiển thị form chỉnh sửa sản phẩm
     @GetMapping("/edit/{id}")
-    public String showEditProductForm(@PathVariable("id") int id, Model model) {
-        Optional<Product> optionalProduct = productService.getProductById(id);
-
-        if (optionalProduct.isPresent()) {
-            model.addAttribute("product", optionalProduct.get());
+    public String showEditProductForm(@PathVariable("id") Integer id, Model model) {
+        Optional<Product> p = productService.getProductById(id);
+        if (p.isPresent()) {
+            model.addAttribute("product", p.get());
         } else {
             // Xử lý trường hợp không tìm thấy sản phẩm
             // Chuyển hướng về trang danh sách hoặc hiển thị thông báo lỗi
-            return "redirect:/products/list";
+            return "redirect:/products";
         }
 
         return "new_product";
@@ -56,7 +67,7 @@ public class ProductController {
     @GetMapping("/delete/{id}")
     public String deleteProduct(@PathVariable("id") int id) {
         productService.deleteProductById(id);
-        return "redirect:/products/list";
+        return "redirect:/products";
     }
 
     // Thêm chức năng xem chi tiết sản phẩm
@@ -69,7 +80,7 @@ public class ProductController {
             return "product_detail"; // Trả về template chi tiết sản phẩm
         } else {
             // Xử lý trường hợp không tìm thấy sản phẩm
-            return "redirect:/products/list";
+            return "redirect:/products";
         }
     }
 }
